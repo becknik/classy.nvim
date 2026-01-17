@@ -66,9 +66,10 @@ local traverse_tree = function(method)
 
   -- get lang information of current position
   local current_tree = lang_tree:language_for_range(range)
-  local lang_at_cursor = current_tree:lang()
+  local lang = current_tree:lang()
 
-  local lang = parsers.ft_to_lang(lang_at_cursor)
+  -- In newer treesitter API, lang() already returns the correct language name
+  -- No need to convert with ft_to_lang anymore
 
   -- find the node at current cursor position
   local node = vim.treesitter.get_node()
